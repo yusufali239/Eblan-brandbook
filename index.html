@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBLAN Brand Guidelines 2024</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0B0B0B;
+            color: #F2F2EE;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Language Switcher - FIXED */
+        .lang-switcher {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(20, 20, 20, 0.95);
+            padding: 10px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .lang-btn {
+            background: transparent;
+            color: #8C8C8C;
+            border: 1px solid #8C8C8C;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: #C9C2B8;
+            color: #0B0B0B;
+            border-color: #C9C2B8;
+            transform: translateY(-2px);
+        }
+        
+        .lang-btn.active {
+            background: #F2F2EE;
+            color: #0B0B0B;
+            border-color: #F2F2EE;
+        }
+        
+        /* Download PDF Button */
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: #F2F2EE;
+            color: #0B0B0B;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(242, 242, 238, 0.3);
+        }
+        
+        .download-btn:hover {
+            background: #C9C2B8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(242, 242, 238, 0.5);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #C9C2B8, #F2F2EE);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+        
+        .page {
+            min-height: 100vh;
+            padding: 80px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cover {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 120px;
+            font-weight: 300;
+            letter-spacing: 20px;
+            margin-bottom: 60px;
+            color: #F2F2EE;
+            animation: logoAppear 1s ease;
+        }
+        
+        @keyframes logoAppear {
+            from {
+                opacity: 0;
+                letter-spacing: 50px;
+            }
+            to {
+                opacity: 1;
+                letter-spacing: 20px;
+            }
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #8C8C8C;
+            margin-bottom: 100px;
+        }
+        
+        .year {
+            font-size: 16px;
+            color: #8C8C8C;
+            font-weight: 300;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 40px;
+            color: #F2F2EE;
+        }
+        
+        h2 {
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            margin-top: 60px;
+            color: #F2F2EE;
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #C9C2B8;
+        }
+        
+        p {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #8C8C8C;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+        
+        .quote {
+            font-size: 32px;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: #F2F2EE;
+            text-align: center;
+            margin: 60px auto;
+            padding: 40px;
+            border-left: 2px solid #C9C2B8;
+            max-width: 900px;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .image-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #141414;
+            position: relative;
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(11, 11, 11, 0.9));
+            padding: 20px;
+            color: #F2F2EE;
+            font-size: 14px;
+            letter-spacing: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-item:hover .image-caption {
+            opacity: 1;
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .full-width-image {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+        
+        .product-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            border: 1px solid #141414;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .color-swatch:hover {
+            transform: translateY(-5px);
+        }
+        
+        .color-name {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .color-hex {
+            font-size: 12px;
+            font-weight: 300;
+            opacity: 0.7;
+        }
+        
+        .typography-sample {
+            margin: 30px 0;
+            padding: 30px;
+            background: #141414;
+            border-radius: 8px;
+        }
+        
+        .font-name {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #C9C2B8;
+            margin-bottom: 15px;
+        }
+        
+        .font-display {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .principle {
+            padding: 30px;
+            background: #141414;
+            border-radius: 8px;
+            border-left: 3px solid #C9C2B8;
+            transition: all 0.3s ease;
+        }
+        
+        .principle:hover {
+            background: #1a1a1a;
+            transform: translateX(5px);
+        }
+        
+        .principle-title {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #F2F2EE;
+        }
+        
+        .principle-text {
+            font-size: 14px;
+            color: #8C8C8C;
+            line-height: 1.6;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        li {
+            font-size: 16px;
+            font-weight: 300;
+            color: #8C8C8C;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #C9C2B8;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: #C9C2B8;
+            margin: 40px 0;
+        }
+        
+        /* Language content visibility */
+        .lang-content {
+            display: none;
+        }
+        
+        .lang-content.active {
+            display: block;
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: #141414;
+            border-radius: 8px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #C9C2B8;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: #8C8C8C;
+        }
+        
+        @media print {
+            .page {
+                page-break-after: always;
+            }
+            .lang-switcher, .download-btn, .progress-bar {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page {
+                padding: 60px 30px;
+            }
+            
+            .logo {
+                font-size: 60px;
+                letter-spacing: 10px;
+            }
+            
+            h1 {
+                font-size: 32px;
+                letter-spacing: 4px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            .quote {
+                font-size: 20px;
+                padding: 30px 20px;
+            }
+            
+            .lang-switcher {
+                top: 20px;
+                right: 20px;
+                flex-wrap: wrap;
+            }
+            
+            .download-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+            }
+            
+            .product-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+    </div>
+    
+    <button class="download-btn" onclick="window.print()">DOWNLOAD PDF</button>
+
+    <!-- ENGLISH VERSION -->
+    <div class="lang-content active" data-lang-content="en">
+        <!-- COVER PAGE -->
+        <div class="page cover">
+            <div class="logo">EBLAN</div>
+            <div class="subtitle">BRAND GUIDELINES</div>
+            <div class="year">2024</div>
+        </div>
+
+        <!-- PHILOSOPHY WITH HERO IMAGE -->
+        <div class="page">
+            <h1>PHILOSOPHY</h1>
+            <div class="divider"></div>
+            
+            <p>EBLAN was founded in 2024 in Paris as a response to visual noise and excessive complexity of contemporary fashion. We create clothing that speaks through form, not words.</p>
+            
+            <img src="images/Storefront.jpg" alt="EBLAN Paris Storefront" class="hero-image">
+            
+            <div class="quote">"Form before noise"</div>
+            
+            <h2>BRAND DNA</h2>
+            
+            <div class="principles">
+                <div class="principle">
+                    <div class="principle-title">FORM</div>
+                    <div class="principle-text">Every line, every silhouette is thought through to the smallest detail. We believe in the power of pure geometry and precision tailoring.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">MATERIAL</div>
+                    <div class="principle-text">Fabric quality defines product longevity. We choose materials that age with dignity.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">SILENCE</div>
+                    <div class="principle-text">In an era of information overload, we choose minimalism and restraint. Our clothing doesn't shout—it speaks with quiet confidence.</div>
+                </div>
+            </div>
+            
+            <h2>OUR VALUES</h2>
+            <ul>
+                <li>Longevity over trends</li>
+                <li>Quality over quantity</li>
+                <li>Form over noise</li>
+                <li>Confidence through simplicity</li>
+            </ul>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">2024</div>
+                    <div class="stat-label">FOUNDED</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">01</div>
+                    <div class="stat-label">COLLECTIONS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">ORGANIC</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT SHOWCASE -->
+        <div class="page">
+            <h1>PRODUCTS</h1>
+            <div class="divider"></div>
+            
+            <p>Each piece is designed to be worn for years, not seasons. Premium materials, meticulous construction, timeless design.</p>
+            
+            <div class="product-showcase">
+                <img src="images/Hoodie - product1.jpg" alt="EBLAN Hoodie Product" class="product-image">
+                <img src="images/Hoodie - product2.jpg" alt="EBLAN Hoodie Detail" class="product-image">
+            </div>
+            
+            <h2>SIGNATURE PIECES</h2>
+            <p>The EBLAN hoodie embodies our philosophy: minimal branding, maximum quality. Cut from heavyweight organic cotton, it features our understated logo and a fit designed for all body types.</p>
+            
+            <h3>Materials & Construction</h3>
+            <ul>
+                <li>100% organic cotton, 380 GSM</li>
+                <li>Pre-washed for minimal shrinkage</li>
+                <li>Reinforced seams and heavy-duty stitching</li>
+                <li>Metal-tipped drawstrings</li>
+                <li>Made in Portugal</li>
+            </ul>
+        </div>
+
+        <!-- LIFESTYLE IMAGERY -->
+        <div class="page">
+            <h1>LIFESTYLE</h1>
+            <div class="divider"></div>
+            
+            <p>EBLAN is for those who value substance over spectacle. Our garments fit seamlessly into modern life—from Parisian streets to creative studios.</p>
+            
+            <img src="images/Hoodie-model1.jpg" alt="EBLAN Lifestyle" class="full-width-image">
+            
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="images/Hoodie-model2.jpg" alt="EBLAN Model">
+                    <div class="image-caption">RUNWAY FW24</div>
+                </div>
+                <div class="image-item">
+                    <img src="images/Model - portrait1.jpg" alt="EBLAN Portrait">
+                    <div class="image-caption">STUDIO PARIS</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BRAND ELEMENTS -->
+        <div class="page">
+            <h1>BRAND ELEMENTS</h1>
+            <div class="divider"></div>
+            
+            <p>From product details to packaging, every touchpoint reflects our commitment to craftsmanship and restraint.</p>
+            
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="images/Ball1.jpg" alt="EBLAN Ball Detail">
+                    <div class="image-caption">SIGNATURE BRANDING</div>
+                </div>
+                <div class="image-item">
+                    <img src="images/Ball2.jpg" alt="EBLAN Ball">
+                    <div class="image-caption">LEATHER GOODS</div>
+                </div>
+            </div>
+            
+            <h2>COLLABORATIONS</h2>
+            <p>We partner with select brands and artisans who share our values of quality and timelessness. Each collaboration is carefully considered and executed with precision.</p>
+        </div>
+
+        <!-- LOGO & TYPOGRAPHY -->
+        <div class="page">
+            <h1>LOGO</h1>
+            <div class="divider"></div>
+            
+            <div style="text-align: center; margin: 60px 0;">
+                <div style="font-size: 72px; letter-spacing: 12px; font-weight: 300;">EBLAN</div>
+            </div>
+            
+            <h3>Usage Guidelines</h3>
+            <ul>
+                <li>Minimum clear space around logo—height of letter "E"</li>
+                <li>Do not alter proportions or letter spacing</li>
+                <li>Use only on black or white backgrounds</li>
+                <li>No effects, shadows, or outlines</li>
+                <li>Maintain aspect ratio in all applications</li>
+            </ul>
+            
+            <h2>TYPOGRAPHY</h2>
+            
+            <div class="typography-sample">
+                <div class="font-name">PRIMARY — HEADLINES</div>
+                <div class="font-display">Canela</div>
+                <p style="color: #8C8C8C;">Used 
