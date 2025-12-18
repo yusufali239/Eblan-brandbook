@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +18,242 @@
             background: #0B0B0B;
             color: #F2F2EE;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Cursor Effect */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #C9C2B8;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(201, 194, 184, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+            mix-blend-mode: difference;
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(20, 20, 20, 0.95);
+            padding: 12px;
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(201, 194, 184, 0.1);
+        }
+        
+        .lang-btn {
+            background: transparent;
+            color: #8C8C8C;
+            border: 1px solid #8C8C8C;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: #C9C2B8;
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .lang-btn:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .lang-btn:hover {
+            color: #0B0B0B;
+            border-color: #C9C2B8;
+            transform: translateY(-3px);
+        }
+        
+        .lang-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .lang-btn.active {
+            background: #F2F2EE;
+            color: #0B0B0B;
+            border-color: #F2F2EE;
+            transform: scale(1.05);
+        }
+        
+        /* Download & Dark Mode Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .action-btn {
+            background: rgba(242, 242, 238, 0.95);
+            color: #0B0B0B;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(242, 242, 238, 0.4);
+            backdrop-filter: blur(10px);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(242, 242, 238, 0.6);
+            background: #C9C2B8;
+        }
+        
+        .dark-mode-btn {
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9C2B8, #F2F2EE, #C9C2B8);
+            background-size: 200% 100%;
+            z-index: 1001;
+            transition: width 0.3s ease;
+            animation: shimmer 3s infinite;
+            box-shadow: 0 0 20px rgba(201, 194, 184, 0.5);
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(201, 194, 184, 0.9);
+            border: none;
+            border-radius: 50%;
+            color: #0B0B0B;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(201, 194, 184, 0.4);
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-top:hover {
+            background: #F2F2EE;
+            transform: translateY(-5px);
+        }
+        
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(201, 194, 184, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
         }
         
         .page {
             min-height: 100vh;
-            padding: 60px 80px;
-            page-break-after: always;
+            padding: 80px 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            z-index: 1;
         }
         
         .cover {
@@ -41,6 +268,21 @@
             letter-spacing: 20px;
             margin-bottom: 60px;
             color: #F2F2EE;
+            animation: logoAppear 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            text-shadow: 0 0 40px rgba(242, 242, 238, 0.1);
+        }
+        
+        @keyframes logoAppear {
+            0% {
+                opacity: 0;
+                letter-spacing: 80px;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 1;
+                letter-spacing: 20px;
+                transform: scale(1);
+            }
         }
         
         .subtitle {
@@ -49,12 +291,25 @@
             letter-spacing: 4px;
             color: #8C8C8C;
             margin-bottom: 100px;
+            animation: fadeInUp 1s ease 0.3s both;
         }
         
         .year {
             font-size: 16px;
             color: #8C8C8C;
             font-weight: 300;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         h1 {
@@ -63,6 +318,23 @@
             letter-spacing: 8px;
             margin-bottom: 40px;
             color: #F2F2EE;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #C9C2B8, transparent);
+            animation: lineGrow 1s ease forwards;
+        }
+        
+        @keyframes lineGrow {
+            to { width: 100%; }
         }
         
         h2 {
@@ -98,9 +370,123 @@
             letter-spacing: 2px;
             color: #F2F2EE;
             text-align: center;
-            margin: 60px 0;
+            margin: 60px auto;
             padding: 40px;
-            border-left: 2px solid #C9C2B8;
+            border-left: 3px solid #C9C2B8;
+            max-width: 900px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.5), transparent);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 120px;
+            color: rgba(201, 194, 184, 0.1);
+            font-family: Georgia, serif;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .image-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #141414;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .image-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .image-item:hover img {
+            transform: scale(1.15) rotate(2deg);
+        }
+        
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(11, 11, 11, 0.95), transparent);
+            padding: 30px 20px 20px;
+            color: #F2F2EE;
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .image-item:hover .image-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 40px 0;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+        }
+        
+        .full-width-image {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .product-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+        
+        .product-image:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
         }
         
         .color-grid {
@@ -112,38 +498,74 @@
         
         .color-swatch {
             aspect-ratio: 1;
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 20px;
-            border: 1px solid #141414;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .color-swatch::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.1));
+            transition: all 0.5s ease;
+        }
+        
+        .color-swatch:hover::before {
+            top: 0;
+        }
+        
+        .color-swatch:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #C9C2B8;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
         .color-name {
             font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-weight: 600;
+            letter-spacing: 2px;
             margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
         }
         
         .color-hex {
             font-size: 12px;
-            font-weight: 300;
+            font-weight: 400;
             opacity: 0.7;
+            position: relative;
+            z-index: 1;
         }
         
         .typography-sample {
             margin: 30px 0;
-            padding: 30px;
-            background: #141414;
-            border-radius: 8px;
+            padding: 40px;
+            background: linear-gradient(135deg, #141414, #1a1a1a);
+            border-radius: 16px;
+            border: 1px solid rgba(201, 194, 184, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .typography-sample:hover {
+            border-color: rgba(201, 194, 184, 0.3);
+            transform: translateX(10px);
         }
         
         .font-name {
             font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 2px;
+            font-weight: 600;
+            letter-spacing: 3px;
             color: #C9C2B8;
             margin-bottom: 15px;
         }
@@ -158,29 +580,57 @@
         .principles {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            gap: 30px;
             margin-top: 40px;
         }
         
         .principle {
-            padding: 30px;
-            background: #141414;
-            border-radius: 8px;
-            border-left: 3px solid #C9C2B8;
+            padding: 35px;
+            background: linear-gradient(135deg, #141414, #1a1a1a);
+            border-radius: 16px;
+            border-left: 4px solid #C9C2B8;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .principle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(201, 194, 184, 0.05), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .principle:hover::before {
+            width: 100%;
+        }
+        
+        .principle:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-left-width: 6px;
         }
         
         .principle-title {
             font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 2px;
+            font-weight: 600;
+            letter-spacing: 3px;
             margin-bottom: 15px;
             color: #F2F2EE;
+            position: relative;
+            z-index: 1;
         }
         
         .principle-text {
             font-size: 14px;
             color: #8C8C8C;
-            line-height: 1.6;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
         
         ul {
@@ -195,6 +645,12 @@
             margin-bottom: 15px;
             padding-left: 30px;
             position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        li:hover {
+            color: #F2F2EE;
+            padding-left: 40px;
         }
         
         li:before {
@@ -202,95 +658,566 @@
             position: absolute;
             left: 0;
             color: #C9C2B8;
+            transition: all 0.3s ease;
+        }
+        
+        li:hover:before {
+            left: 10px;
+            color: #F2F2EE;
         }
         
         .divider {
             width: 60px;
-            height: 2px;
-            background: #C9C2B8;
+            height: 3px;
+            background: linear-gradient(90deg, #C9C2B8, transparent);
             margin: 40px 0;
+            position: relative;
+        }
+        
+        .divider::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #F2F2EE, transparent);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        .lang-content {
+            display: none;
+        }
+        
+        .lang-content.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #141414, #1a1a1a);
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #C9C2B8;
+            box-shadow: 0 20px 60px rgba(201, 194, 184, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 56px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #C9C2B8;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover .stat-number {
+            color: #F2F2EE;
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #8C8C8C;
+            font-weight: 600;
+        }
+        
+        /* Modal for full-screen images */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 11, 0.98);
+            backdrop-filter: blur(20px);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 40px;
+            color: #F2F2EE;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: #C9C2B8;
+            transform: rotate(90deg);
         }
         
         @media print {
-            .page {
-                page-break-after: always;
+            .lang-switcher, .action-buttons, .scroll-top, .progress-bar, .particles, .cursor, .cursor-follower {
+                display: none !important;
             }
         }
         
         @media (max-width: 768px) {
             .page {
-                padding: 40px 30px;
+                padding: 60px 30px;
             }
             
             .logo {
-                font-size: 60px;
+                font-size: 50px;
                 letter-spacing: 10px;
             }
             
             h1 {
-                font-size: 32px;
+                font-size: 28px;
                 letter-spacing: 4px;
             }
             
             h2 {
-                font-size: 24px;
+                font-size: 22px;
             }
             
             .quote {
-                font-size: 20px;
+                font-size: 18px;
+                padding: 30px 20px;
             }
-        }
-        
-        .btn-download {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: #F2F2EE;
-            color: #0B0B0B;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-        
-        .btn-download:hover {
-            background: #C9C2B8;
-        }
-        
-        @media print {
-            .btn-download {
+            
+            .lang-switcher {
+                top: 15px;
+                right: 15px;
+                flex-wrap: wrap;
+                padding: 8px;
+            }
+            
+            .lang-btn {
+                padding: 8px 12px;
+                font-size: 10px;
+            }
+            
+            .action-buttons {
+                bottom: 15px;
+                right: 15px;
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                padding: 12px 20px;
+                font-size: 10px;
+            }
+            
+            .product-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .cursor, .cursor-follower {
                 display: none;
             }
         }
     </style>
 </head>
 <body>
-    <button class="btn-download" onclick="window.print()">СКАЧАТЬ PDF</button>
-
-    <!-- COVER PAGE -->
-    <div class="page cover">
-        <div class="logo">EBLAN</div>
-        <div class="subtitle">BRAND GUIDELINES</div>
-        <div class="year">2024</div>
+    <!-- Custom Cursors -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en"><span>EN</span></button>
+        <button class="lang-btn" data-lang="ru"><span>RU</span></button>
+        <button class="lang-btn" data-lang="fr"><span>FR</span></button>
+        <button class="lang-btn" data-lang="it"><span>IT</span></button>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="action-btn" onclick="window.print()">DOWNLOAD PDF</button>
+        <button class="action-btn dark-mode-btn" onclick="toggleDarkMode()" title="Toggle Theme">☀️</button>
+    </div>
+    
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+    
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <span class="modal-close" onclick="closeModal()">×</span>
+        <img id="modalImage" src="" alt="">
     </div>
 
-    <!-- PHILOSOPHY -->
-    <div class="page">
-        <h1>ФИЛОСОФИЯ</h1>
-        <div class="divider"></div>
-        
-        <p>Бренд EBLAN был основан в 2024 году в Париже как ответ на визуальный шум и излишнюю сложность современной моды. Мы создаем одежду, которая говорит через форму, а не через слова.</p>
-        
-        <div class="quote">"Form before noise"</div>
-        
-                    <h2>SIGNATURE PIECES</h2>
-            <p>Худи EBLAN воплощает нашу философию: минимальный брендинг, максимальное качество.</p>
+    <!-- ENGLISH VERSION -->
+    <div class="lang-content active" data-lang-content="en">
+        <div class="page cover">
+            <div class="logo">EBLAN</div>
+            <div class="subtitle">BRAND GUIDELINES</div>
+            <div class="year">2024</div>
+        </div>
+
+        <div class="page">
+            <h1>PHILOSOPHY</h1>
+            <div class="divider"></div>
+            
+            <p>EBLAN was founded in 2024 in Paris as a response to visual noise and excessive complexity of contemporary fashion. We create clothing that speaks through form, not words.</p>
+            
+            <img src="images/Storefront.jpg" alt="EBLAN Paris Storefront" class="hero-image" onclick="openModal(this.src)">
+            
+            <div class="quote">"Form before noise"</div>
+            
+            <h2>BRAND DNA</h2>
+            
+            <div class="principles">
+                <div class="principle">
+                    <div class="principle-title">FORM</div>
+                    <div class="principle-text">Every line, every silhouette is thought through to the smallest detail. We believe in the power of pure geometry and precision tailoring.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">MATERIAL</div>
+                    <div class="principle-text">Fabric quality defines product longevity. We choose materials that age with dignity.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">SILENCE</div>
+                    <div class="principle-text">In an era of information overload, we choose minimalism and restraint. Our clothing doesn't shout—it speaks with quiet confidence.</div>
+                </div>
+            </div>
+            
+            <h2>OUR VALUES</h2>
+            <ul>
+                <li>Longevity over trends</li>
+                <li>Quality over quantity</li>
+                <li>Form over noise</li>
+                <li>Confidence through simplicity</li>
+            </ul>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">2024</div>
+                    <div class="stat-label">FOUNDED</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">01</div>
+                    <div class="stat-label">COLLECTIONS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">ORGANIC</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <h1>PRODUCTS</h1>
+            <div class="divider"></div>
+            
+            <p>Each piece is designed to be worn for years, not seasons. Premium materials, meticulous construction, timeless design.</p>
+            
+            <div class="product-showcase">
+                <img src="images/Hoodie - product1.jpg" alt="EBLAN Hoodie Product" class="product-image" onclick="openModal(this.src)">
+                <img src="images/Hoodie - product2.jpg" alt="EBLAN Hoodie Detail" class="product-image" onclick="openModal(this.src)">
+            </div>
+            
+            <h2>SIGNATURE PIECES</h2>
+            <p>The EBLAN hoodie embodies our philosophy: minimal branding, maximum quality. Cut from heavyweight organic cotton, it features our understated logo and a fit designed for all body types.</p>
+            
+            <h3>Materials & Construction</h3>
+            <ul>
+                <li>100% organic cotton, 380 GSM</li>
+                <li>Pre-washed for minimal shrinkage</li>
+                <li>Reinforced seams and heavy-duty stitching</li>
+                <li>Metal-tipped drawstrings</li>
+                <li>Made in Portugal</li>
+            </ul>
+        </div>
+
+        <div class="page">
+            <h1>LIFESTYLE</h1>
+            <div class="divider"></div>
+            
+            <p>EBLAN is for those who value substance over spectacle. Our garments fit seamlessly into modern life—from Parisian streets to creative studios.</p>
+            
+            <img src="images/Hoodie-model1.jpg" alt="EBLAN Lifestyle" class="full-width-image" onclick="openModal(this.src)">
+            
+            <div class="image-grid">
+                <div class="image-item" onclick="openModal('images/Hoodie-model2.jpg')">
+                    <img src="images/Hoodie-model2.jpg" alt="EBLAN Model">
+                    <div class="image-caption">RUNWAY FW24</div>
+                </div>
+                <div class="image-item" onclick="openModal('images/Model - portrait1.jpg')">
+                    <img src="images/Model - portrait1.jpg" alt="EBLAN Portrait">
+                    <div class="image-caption">STUDIO PARIS</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <h1>BRAND ELEMENTS</h1>
+            <div class="divider"></div>
+            
+            <p>From product details to packaging, every touchpoint reflects our commitment to craftsmanship and restraint.</p>
+            
+            <div class="image-grid">
+                <div class="image-item" onclick="openModal('images/Ball1.jpg')">
+                    <img src="images/Ball1.jpg" alt="EBLAN Ball Detail">
+                    <div class="image-caption">SIGNATURE BRANDING</div>
+                </div>
+                <div class="image-item" onclick="openModal('images/Ball2.jpg')">
+                    <img src="images/Ball2.jpg" alt="EBLAN Ball">
+                    <div class="image-caption">LEATHER GOODS</div>
+                </div>
+            </div>
+            
+            <h2>COLLABORATIONS</h2>
+            <p>We partner with select brands and artisans who share our values of quality and timelessness. Each collaboration is carefully considered and executed with precision.</p>
+        </div>
+
+        <div class="page">
+            <h1>LOGO</h1>
+            <div class="divider"></div>
+            
+            <div style="text-align: center; margin: 60px 0;">
+                <div style="font-size: 72px; letter-spacing: 12px; font-weight: 300;">EBLAN</div>
+            </div>
+            
+            <h3>Usage Guidelines</h3>
+            <ul>
+                <li>Minimum clear space around logo—height of letter "E"</li>
+                <li>Do not alter proportions or letter spacing</li>
+                <li>Use only on black or white backgrounds</li>
+                <li>No effects, shadows, or outlines</li>
+                <li>Maintain aspect ratio in all applications</li>
+            </ul>
+            
+            <h2>TYPOGRAPHY</h2>
+            
+            <div class="typography-sample">
+                <div class="font-name">PRIMARY — HEADLINES</div>
+                <div class="font-display">Canela</div>
+                <p style="color: #8C8C8C;">Used for main headlines, collection names, and key messages. Conveys confidence and calm.</p>
+            </div>
+            
+            <div class="typography-sample">
+                <div class="font-name">SECONDARY — BODY TEXT</div>
+                <div class="font-display" style="font-family: 'Inter', sans-serif;">Inter</div>
+                <p style="color: #8C8C8C;">Used for body text, descriptions, and technical information. Ensures precision and readability.</p>
+            </div>
+        </div>
+
+        <div class="page">
+            <h1>COLOR PALETTE</h1>
+            <div class="divider"></div>
+            
+            <p>EBLAN's color palette is built on the contrast between deep black and soft neutral tones. This creates visual tension that emphasizes form and texture.</p>
+            
+            <div class="color-grid">
+                <div class="color-swatch" style="background: #0B0B0B;">
+                    <div class="color-name" style="color: #F2F2EE;">ABSOLUTE BLACK</div>
+                    <div class="color-hex" style="color: #8C8C8C;">#0B0B0B</div>
+                </div>
+                
+                <div class="color-swatch" style="background: #141414;">
+                    <div class="color-name" style="color: #F2F2EE;">SOFT BLACK</div>
+                    <div class="color-hex" style="color: #8C8C8C;">#141414</div>
+                </div>
+                
+                <div class="color-swatch" style="background: #8C8C8C;">
+                    <div class="color-name" style="color: #0B0B0B;">WARM GREY</div>
+                    <div class="color-hex" style="color: #0B0B0B;">#8C8C8C</div>
+                </div>
+                
+                <div class="color-swatch" style="background: #F2F2EE; border: 1px solid #8C8C8C;">
+                    <div class="color-name" style="color: #0B0B0B;">OFF WHITE</div>
+                    <div class="color-hex" style="color: #0B0B0B;">#F2F2EE</div>
+                </div>
+                
+                <div class="color-swatch" style="background: #C9C2B8;">
+                    <div class="color-name" style="color: #0B0B0B;">STONE BEIGE</div>
+                    <div class="color-hex" style="color: #0B0B0B;">#C9C2B8</div>
+                </div>
+            </div>
+            
+            <h2>COLOR APPLICATION</h2>
+            <ul>
+                <li>Absolute Black (#0B0B0B) — Primary background for all materials</li>
+                <li>Off White (#F2F2EE) — Primary text and logo color</li>
+                <li>Warm Grey (#8C8C8C) — Secondary text and accents</li>
+                <li>Stone Beige (#C9C2B8) — Decorative elements and dividers</li>
+                <li>Soft Black (#141414) — Cards and elevated surfaces</li>
+            </ul>
+        </div>
+
+        <div class="page">
+            <h1>TONE OF VOICE</h1>
+            <div class="divider"></div>
+            
+            <p>EBLAN's voice is that of a confident minimalist. We speak calmly, precisely, and without excess words.</p>
+            
+            <h2>COMMUNICATION PRINCIPLES</h2>
+            
+            <div class="principles">
+                <div class="principle">
+                    <div class="principle-title">CALM</div>
+                    <div class="principle-text">We don't shout or exaggerate. Our voice is always steady and confident.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">PRECISION</div>
+                    <div class="principle-text">Every word is chosen with the same care as every stitch in our clothing.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">HONESTY</div>
+                    <div class="principle-text">We speak only about what truly matters. No marketing clichés.</div>
+                </div>
+            </div>
+            
+            <h2>WHAT WE DON'T DO</h2>
+            <ul>
+                <li>No slogans or catchy phrases</li>
+                <li>No exaggeration or false promises</li>
+                <li>No following communication trends</li>
+                <li>No emojis or exclamation marks</li>
+                <li>No artificial hype</li>
+                <li>No seasonal pressure or FOMO tactics</li>
+            </ul>
+        </div>
+
+        <div class="page cover">
+            <div class="quote">"In creating EBLAN, we sought silence in a world of noise, form in a world of chaos, quality in a world of quantity"</div>
+            <div style="margin-top: 60px; text-align: center; color: #8C8C8C; font-size: 14px; letter-spacing: 2px;">
+                EBLAN PARIS<br>
+                EST. 2024<br><br>
+                contact@eblan.paris
+            </div>
+        </div>
+    </div>
+
+    <!-- RUSSIAN VERSION -->
+    <div class="lang-content" data-lang-content="ru">
+        <div class="page cover">
+            <div class="logo">EBLAN</div>
+            <div class="subtitle">РУКОВОДСТВО ПО БРЕНДУ</div>
+            <div class="year">2024</div>
+        </div>
+
+        <div class="page">
+            <h1>ФИЛОСОФИЯ</h1>
+            <div class="divider"></div>
+            
+            <p>Бренд EBLAN был основан в 2024 году в Париже как ответ на визуальный шум и излишнюю сложность современной моды. Мы создаём одежду, которая говорит через форму, а не через слова.</p>
+            
+            <img src="images/Storefront.jpg" alt="Витрина EBLAN в Париже" class="hero-image" onclick="openModal(this.src)">
+            
+            <div class="quote">«Форма прежде шума»</div>
+            
+            <h2>ДНК БРЕНДА</h2>
+            
+            <div class="principles">
+                <div class="principle">
+                    <div class="principle-title">ФОРМА</div>
+                    <div class="principle-text">Каждая линия, каждый силуэт продуман до мельчайших деталей. Мы верим в силу чистой геометрии и точности кроя.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">МАТЕРИАЛ</div>
+                    <div class="principle-text">Качество ткани определяет долговечность изделия. Мы выбираем материалы, которые стареют с достоинством.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">ТИШИНА</div>
+                    <div class="principle-text">В эпоху перенасыщения информацией мы выбираем минимализм и сдержанность. Наша одежда не кричит — она уверенно молчит.</div>
+                </div>
+            </div>
+            
+            <h2>НАШИ ЦЕННОСТИ</h2>
+            <ul>
+                <li>Долговечность превыше трендов</li>
+                <li>Качество превыше количества</li>
+                <li>Форма превыше шума</li>
+                <li>Уверенность через простоту</li>
+            </ul>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">2024</div>
+                    <div class="stat-label">ОСНОВАН</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">01</div>
+                    <div class="stat-label">КОЛЛЕКЦИЙ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">ОРГАНИКА</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <h1>ПРОДУКЦИЯ</h1>
+            <div class="divider"></div>
+            
+            <p>Каждая вещь создана, чтобы носиться годами, а не сезонами. Премиальные материалы, тщательная конструкция, вневременной дизайн.</p>
+            
+            <div class="product-showcase">
+                <img src="images/Hoodie - product1.jpg" alt="Худи EBLAN" class="product-image" onclick="openModal(this.src)">
+                <img src="images/Hoodie - product2.jpg" alt="Детали худи EBLAN" class="product-image" onclick="openModal(this.src)">
+            </div>
+            
+            <h2>КЛЮЧЕВЫЕ МОДЕЛИ</h2>
+            <p>Худи EBLAN воплощает нашу философию: минимальный брендинг, максимальное качество. Сшитое из плотного органического хлопка, оно отличается сдержанным логотипом и кроем, подходящим для любого типа фигуры.</p>
             
             <h3>Материалы и конструкция</h3>
             <ul>
@@ -303,19 +1230,19 @@
         </div>
 
         <div class="page">
-            <h1>ЛАЙФСТАЙЛ</h1>
+            <h1>ОБРАЗ ЖИЗНИ</h1>
             <div class="divider"></div>
             
-            <p>EBLAN для тех, кто ценит содержание выше зрелища.</p>
+            <p>EBLAN для тех, кто ценит содержание выше зрелища. Наша одежда органично вписывается в современную жизнь — от парижских улиц до творческих студий.</p>
             
-            <img src="images/Hoodie-model1.jpg" alt="Лайфстайл EBLAN" class="full-width-image">
+            <img src="images/Hoodie-model1.jpg" alt="Лайфстайл EBLAN" class="full-width-image" onclick="openModal(this.src)">
             
             <div class="image-grid">
-                <div class="image-item">
+                <div class="image-item" onclick="openModal('images/Hoodie-model2.jpg')">
                     <img src="images/Hoodie-model2.jpg" alt="Модель EBLAN">
-                    <div class="image-caption">ПОДИУМ FW24</div>
+                    <div class="image-caption">ПОДИУМ ОСЕНЬ-ЗИМА 2024</div>
                 </div>
-                <div class="image-item">
+                <div class="image-item" onclick="openModal('images/Model - portrait1.jpg')">
                     <img src="images/Model - portrait1.jpg" alt="Портрет">
                     <div class="image-caption">СТУДИЯ ПАРИЖ</div>
                 </div>
@@ -326,25 +1253,139 @@
             <h1>ЭЛЕМЕНТЫ БРЕНДА</h1>
             <div class="divider"></div>
             
-            <p>От деталей продукта до упаковки — каждая точка контакта отражает наше стремление к мастерству.</p>
+            <p>От деталей продукта до упаковки — каждая точка контакта отражает наше стремление к мастерству и сдержанности.</p>
             
             <div class="image-grid">
-                <div class="image-item">
-                    <img src="images/Ball1.jpg" alt="Детали">
+                <div class="image-item" onclick="openModal('images/Ball1.jpg')">
+                    <img src="images/Ball1.jpg" alt="Детали EBLAN">
                     <div class="image-caption">ФИРМЕННЫЙ БРЕНДИНГ</div>
                 </div>
-                <div class="image-item">
+                <div class="image-item" onclick="openModal('images/Ball2.jpg')">
                     <img src="images/Ball2.jpg" alt="Мяч EBLAN">
                     <div class="image-caption">КОЖАНЫЕ ИЗДЕЛИЯ</div>
                 </div>
             </div>
+            
+            <h2>КОЛЛАБОРАЦИИ</h2>
+            <p>Мы сотрудничаем с избранными брендами и мастерами, которые разделяют наши ценности качества и вневременности. Каждая коллаборация тщательно продумана и выполнена с точностью.</p>
+        </div>
+
+        <div class="page">
+            <h1>ЛОГОТИП</h1>
+            <div class="divider"></div>
+            
+            <div style="text-align: center; margin: 60px 0;">
+                <div style="font-size: 72px; letter-spacing: 12px; font-weight: 300;">EBLAN</div>
+            </div>
+            
+            <h3>Правила использования</h3>
+            <ul>
+                <li>Минимальная свободная зона вокруг логотипа — высота буквы «E»</li>
+                <li>Не изменять пропорции и межбуквенное расстояние</li>
+                <li>Использовать только на чёрном или белом фоне</li>
+                <li>Не добавлять эффекты, тени или контуры</li>
+                <li>Сохранять пропорции во всех применениях</li>
+            </ul>
+            
+            <h2>ТИПОГРАФИКА</h2>
+            
+            <div class="typography-sample">
+                <div class="font-name">ОСНОВНОЙ — ЗАГОЛОВКИ</div>
+                <div class="font-display">Canela</div>
+                <p style="color: #8C8C8C;">Используется для основных заголовков, названий коллекций и ключевых сообщений. Передаёт уверенность и спокойствие.</p>
+            </div>
+            
+            <div class="typography-sample">
+                <div class="font-name">ДОПОЛНИТЕЛЬНЫЙ — ОСНОВНОЙ ТЕКСТ</div>
+                <div class="font-display" style="font-family: 'Inter', sans-serif;">Inter</div>
+                <p style="color: #8C8C8C;">Используется для основного текста, описаний и технической информации. Обеспечивает точность и читаемость.</p>
+            </div>
+        </div>
+
+        <div class="page">
+            <h1>ЦВЕТОВАЯ ПАЛИТРА</h1>
+            <div class="divider"></div>
+            
+            <p>Цветовая палитра EBLAN построена на контрасте между глубоким чёрным и мягкими нейтральными оттенками. Это создаёт визуальное напряжение, которое подчёркивает форму и текстуру.</p>
+            
+            <div class="color-grid">
+                <div class="color-swatch" style="background: #0B0B0B;">
+                    <div class="color-name" style="color: #F2F2EE;">АБСОЛЮТНЫЙ ЧЁРНЫЙ</div>
+                    <div class="color-hex" style="color: #8C8C8C;">#0B0B0B</div>
+                </div>
+                
+                <div class="color-swatch" style="background: #141414;">
+                    <div class="color-name" style="color: #F2F2EE;">МЯГКИЙ ЧЁРНЫЙ</div>
+                    <div class="color-hex" style="color: #8C8C8C;">#141414</div>
+                </div>
+                
+                <div class="color-swatch" style="background: #8C8C8C;">
+                    <div class="color-name" style="color: #0B0B0B;">ТЁПЛЫЙ СЕРЫЙ</div>
+                    <div class="color-hex" style="color: #0B0B0B;">#8C8C8C</div>
+                </div>
+                
+                <div class="color-swatch" style="background: #F2F2EE; border: 1px solid #8C8C8C;">
+                    <div class="color-name" style="color: #0B0B0B;">НЕБЕЛЁНЫЙ БЕЛЫЙ</div>
+                    <div class="color-hex" style="color: #0B0B0B;">#F2F2EE</div>
+                </div>
+                
+                <div class="color-swatch" style="background: #C9C2B8;">
+                    <div class="color-name" style="color: #0B0B0B;">КАМЕННЫЙ БЕЖ</div>
+                    <div class="color-hex" style="color: #0B0B0B;">#C9C2B8</div>
+                </div>
+            </div>
+            
+            <h2>ПРИМЕНЕНИЕ ЦВЕТОВ</h2>
+            <ul>
+                <li>Абсолютный чёрный (#0B0B0B) — Основной фон для всех материалов</li>
+                <li>Небелёный белый (#F2F2EE) — Основной цвет текста и логотипа</li>
+                <li>Тёплый серый (#8C8C8C) — Вторичный текст и акценты</li>
+                <li>Каменный беж (#C9C2B8) — Декоративные элементы и разделители</li>
+                <li>Мягкий чёрный (#141414) — Карточки и приподнятые поверхности</li>
+            </ul>
+        </div>
+
+        <div class="page">
+            <h1>ТОНАЛЬНОСТЬ ОБЩЕНИЯ</h1>
+            <div class="divider"></div>
+            
+            <p>Голос EBLAN — это голос уверенного минималиста. Мы говорим спокойно, точно и без лишних слов.</p>
+            
+            <h2>ПРИНЦИПЫ КОММУНИКАЦИИ</h2>
+            
+            <div class="principles">
+                <div class="principle">
+                    <div class="principle-title">СПОКОЙСТВИЕ</div>
+                    <div class="principle-text">Мы не кричим и не преувеличиваем. Наш голос всегда ровный и уверенный.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">ТОЧНОСТЬ</div>
+                    <div class="principle-text">Каждое слово выбрано с той же тщательностью, что и каждая строчка на нашей одежде.</div>
+                </div>
+                
+                <div class="principle">
+                    <div class="principle-title">ЧЕСТНОСТЬ</div>
+                    <div class="principle-text">Мы говорим только о том, что действительно важно. Никаких маркетинговых клише.</div>
+                </div>
+            </div>
+            
+            <h2>ЧТО МЫ НЕ ДЕЛАЕМ</h2>
+            <ul>
+                <li>Не используем слоганы и кричащие фразы</li>
+                <li>Не преувеличиваем и не даём ложных обещаний</li>
+                <li>Не следуем за коммуникационными трендами</li>
+                <li>Не используем эмодзи и восклицательные знаки</li>
+                <li>Не создаём искусственный ажиотаж</li>
+                <li>Не давим сезонностью и тактикой упущенной выгоды</li>
+            </ul>
         </div>
 
         <div class="page cover">
-            <div class="quote">"Создавая EBLAN, мы стремились к тишине в мире шума, к форме в мире хаоса, к качеству в мире количества"</div>
+            <div class="quote">«Создавая EBLAN, мы стремились к тишине в мире шума, к форме в мире хаоса, к качеству в мире количества»</div>
             <div style="margin-top: 60px; text-align: center; color: #8C8C8C; font-size: 14px; letter-spacing: 2px;">
                 EBLAN PARIS<br>
-                EST. 2024<br><br>
+                ОСНОВАН В 2024<br><br>
                 contact@eblan.paris
             </div>
         </div>
@@ -362,32 +1403,32 @@
             <h1>PHILOSOPHIE</h1>
             <div class="divider"></div>
             
-            <p>EBLAN a été fondé en 2024 à Paris en réponse au bruit visuel de la mode contemporaine.</p>
+            <p>EBLAN a été fondé en 2024 à Paris en réponse au bruit visuel et à la complexité excessive de la mode contemporaine. Nous créons des vêtements qui parlent par la forme, pas par les mots.</p>
             
-            <img src="images/Storefront.jpg" alt="Boutique EBLAN Paris" class="hero-image">
+            <img src="images/Storefront.jpg" alt="Boutique EBLAN Paris" class="hero-image" onclick="openModal(this.src)">
             
-            <div class="quote">"La forme avant le bruit"</div>
+            <div class="quote">«La forme avant le bruit»</div>
             
             <h2>ADN DE LA MARQUE</h2>
             
             <div class="principles">
                 <div class="principle">
                     <div class="principle-title">FORME</div>
-                    <div class="principle-text">Chaque ligne est pensée dans les moindres détails.</div>
+                    <div class="principle-text">Chaque ligne, chaque silhouette est pensée dans les moindres détails. Nous croyons au pouvoir de la géométrie pure et de la coupe précise.</div>
                 </div>
                 
                 <div class="principle">
                     <div class="principle-title">MATIÈRE</div>
-                    <div class="principle-text">La qualité du tissu définit la longévité.</div>
+                    <div class="principle-text">La qualité du tissu définit la longévité du produit. Nous choisissons des matériaux qui vieillissent avec dignité.</div>
                 </div>
                 
                 <div class="principle">
                     <div class="principle-title">SILENCE</div>
-                    <div class="principle-text">Nos vêtements parlent avec confiance tranquille.</div>
+                    <div class="principle-text">À l'ère de la surcharge d'information, nous choisissons le minimalisme et la retenue. Nos vêtements ne crient pas—ils parlent avec une confiance tranquille.</div>
                 </div>
             </div>
             
-            <h2>VALEURS</h2>
+            <h2>NOS VALEURS</h2>
             <ul>
                 <li>Longévité plutôt que tendances</li>
                 <li>Qualité plutôt que quantité</li>
@@ -415,18 +1456,31 @@
             <h1>PRODUITS</h1>
             <div class="divider"></div>
             
+            <p>Chaque pièce est conçue pour être portée pendant des années, pas des saisons. Matériaux premium, construction méticuleuse, design intemporel.</p>
+            
             <div class="product-showcase">
-                <img src="images/Hoodie - product1.jpg" alt="Sweat EBLAN" class="product-image">
-                <img src="images/Hoodie - product2.jpg" alt="Détails" class="product-image">
+                <img src="images/Hoodie - product1.jpg" alt="Sweat EBLAN" class="product-image" onclick="openModal(this.src)">
+                <img src="images/Hoodie - product2.jpg" alt="Détails sweat EBLAN" class="product-image" onclick="openModal(this.src)">
             </div>
             
             <h2>PIÈCES SIGNATURE</h2>
-            <p>Le sweat EBLAN incarne notre philosophie : branding minimal, qualité maximale.</p>
+            <p>Le sweat EBLAN incarne notre philosophie: branding minimal, qualité maximale. Taillé dans du coton biologique épais, il arbore notre logo discret et une coupe conçue pour tous les types de corps.</p>
+            
+            <h3>Matériaux et construction</h3>
+            <ul>
+                <li>100% coton biologique, 380 g/m²</li>
+                <li>Prélavé pour un rétrécissement minimal</li>
+                <li>Coutures renforcées et couture robuste</li>
+                <li>Cordons à embouts métalliques</li>
+                <li>Fabriqué au Portugal</li>
+            </ul>
         </div>
 
         <div class="page">
             <h1>LIFESTYLE</h1>
             <div class="divider"></div>
+            
+            <p>EBLAN s'adresse à ceux qui valorisent la substance plutôt que le spectacle. Nos vêtements s'intègrent parfaitement dans la vie moderne—des rues parisiennes aux studios créatifs.</p>
             
             <img src="images/Hoodie-model1.jpg" alt="Lifestyle EBLAN" class="full-width-image" onclick="openModal(this.src)">
             
@@ -776,463 +1830,5 @@
             100% { filter: hue-rotate(360deg); }
         }
     </style>
-</body>
-</html>="full-width-image">
-            
-            <div class="image-grid">
-                <div class="image-item">
-                    <img src="images/Hoodie-model2.jpg" alt="Modèle">
-                    <div class="image-caption">DÉFILÉ AH24</div>
-                </div>
-                <div class="image-item">
-                    <img src="images/Model - portrait1.jpg" alt="Portrait">
-                    <div class="image-caption">STUDIO PARIS</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="page">
-            <h1>ÉLÉMENTS DE MARQUE</h1>
-            <div class="divider"></div>
-            
-            <div class="image-grid">
-                <div class="image-item">
-                    <img src="images/Ball1.jpg" alt="Détails">
-                    <div class="image-caption">BRANDING SIGNATURE</div>
-                </div>
-                <div class="image-item">
-                    <img src="images/Ball2.jpg" alt="Ballon EBLAN">
-                    <div class="image-caption">MAROQUINERIE</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="page cover">
-            <div class="quote">"En créant EBLAN, nous avons cherché le silence dans le bruit, la forme dans le chaos, la qualité dans la quantité"</div>
-            <div style="margin-top: 60px; text-align: center; color: #8C8C8C; font-size: 14px; letter-spacing: 2px;">
-                EBLAN PARIS<br>
-                EST. 2024<br><br>
-                contact@eblan.paris
-            </div>
-        </div>
-    </div>
-
-    <!-- ITALIAN VERSION -->
-    <div class="lang-content" data-lang-content="it">
-        <div class="page cover">
-            <div class="logo">EBLAN</div>
-            <div class="subtitle">LINEE GUIDA DEL MARCHIO</div>
-            <div class="year">2024</div>
-        </div>
-
-        <div class="page">
-            <h1>FILOSOFIA</h1>
-            <div class="divider"></div>
-            
-            <p>EBLAN è stato fondato nel 2024 a Parigi come risposta al rumore visivo della moda contemporanea.</p>
-            
-            <img src="images/Storefront.jpg" alt="Negozio EBLAN Parigi" class="hero-image">
-            
-            <div class="quote">"La forma prima del rumore"</div>
-            
-            <h2>DNA DEL MARCHIO</h2>
-            
-            <div class="principles">
-                <div class="principle">
-                    <div class="principle-title">FORMA</div>
-                    <div class="principle-text">Ogni linea è pensata nei minimi dettagli.</div>
-                </div>
-                
-                <div class="principle">
-                    <div class="principle-title">MATERIALE</div>
-                    <div class="principle-text">La qualità del tessuto definisce la longevità.</div>
-                </div>
-                
-                <div class="principle">
-                    <div class="principle-title">SILENZIO</div>
-                    <div class="principle-text">I nostri abiti parlano con tranquilla sicurezza.</div>
-                </div>
-            </div>
-            
-            <h2>VALORI</h2>
-            <ul>
-                <li>Longevità piuttosto che tendenze</li>
-                <li>Qualità piuttosto che quantità</li>
-                <li>Forma piuttosto che rumore</li>
-                <li>Sicurezza attraverso la semplicità</li>
-            </ul>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">2024</div>
-                    <div class="stat-label">FONDATO</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">01</div>
-                    <div class="stat-label">COLLEZIONI</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">BIOLOGICO</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="page">
-            <h1>PRODOTTI</h1>
-            <div class="divider"></div>
-            
-            <div class="product-showcase">
-                <img src="images/Hoodie - product1.jpg" alt="Felpa EBLAN" class="product-image">
-                <img src="images/Hoodie - product2.jpg" alt="Dettagli" class="product-image">
-            </div>
-            
-            <h2>PEZZI SIGNATURE</h2>
-            <p>La felpa EBLAN incarna la nostra filosofia: branding minimale, qualità massima.</p>
-        </div>
-
-        <div class="page">
-            <h1>LIFESTYLE</h1>
-            <div class="divider"></div>
-            
-            <img src="images/Hoodie-model1.jpg" alt="Lifestyle EBLAN" class="full-width-image">
-            
-            <div class="image-grid">
-                <div class="image-item">
-                    <img src="images/Hoodie-model2.jpg" alt="Modello">
-                    <div class="image-caption">SFILATA AI24</div>
-                </div>
-                <div class="image-item">
-                    <img src="images/Model - portrait1.jpg" alt="Ritratto">
-                    <div class="image-caption">STUDIO PARIGI</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="page">
-            <h1>ELEMENTI DEL MARCHIO</h1>
-            <div class="divider"></div>
-            
-            <div class="image-grid">
-                <div class="image-item">
-                    <img src="images/Ball1.jpg" alt="Dettagli">
-                    <div class="image-caption">BRANDING SIGNATURE</div>
-                </div>
-                <div class="image-item">
-                    <img src="images/Ball2.jpg" alt="Pallone EBLAN">
-                    <div class="image-caption">PELLETTERIA</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="page cover">
-            <div class="quote">"Creando EBLAN, abbiamo cercato il silenzio nel rumore, la forma nel caos, la qualità nella quantità"</div>
-            <div style="margin-top: 60px; text-align: center; color: #8C8C8C; font-size: 14px; letter-spacing: 2px;">
-                EBLAN PARIS<br>
-                EST. 2024<br><br>
-                contact@eblan.paris
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Language Switcher - FIXED
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang');
-                
-                // Hide all content
-                document.querySelectorAll('.lang-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // Show selected language content
-                document.querySelector(`[data-lang-content="${lang}"]`).classList.add('active');
-                
-                // Update button states
-                document.querySelectorAll('.lang-btn').forEach(b => {
-                    b.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                // Update HTML lang attribute
-                document.documentElement.lang = lang;
-                
-                // Scroll to top smoothly
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Progress Bar on Scroll
-        window.addEventListener('scroll', function() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
-        });
-        
-        // Smooth animations on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        // Observe all pages
-        document.querySelectorAll('.page').forEach(page => {
-            page.style.opacity = '0';
-            page.style.transform = 'translateY(20px)';
-            page.style.transition = 'all 0.6s ease';
-            observer.observe(page);
-        });
-    </script>
-</body>
-</html>>ДНК БРЕНДА</h2>
-        
-        <div class="principles">
-            <div class="principle">
-                <div class="principle-title">ФОРМА</div>
-                <div class="principle-text">Каждая линия, каждый силуэт продуман до мельчайших деталей. Мы верим в силу чистой геометрии и точности кроя.</div>
-            </div>
-            
-            <div class="principle">
-                <div class="principle-title">МАТЕРИАЛ</div>
-                <div class="principle-text">Качество ткани определяет долговечность изделия. Мы выбираем материалы, которые стареют с достоинством.</div>
-            </div>
-            
-            <div class="principle">
-                <div class="principle-title">ТИШИНА</div>
-                <div class="principle-text">В эпоху перенасыщения информацией, мы выбираем минимализм и сдержанность. Наша одежда не кричит — она уверенно молчит.</div>
-            </div>
-        </div>
-        
-        <h2>ЦЕННОСТИ</h2>
-        <ul>
-            <li>Долговечность превыше трендов</li>
-            <li>Качество превыше количества</li>
-            <li>Форма превыше шума</li>
-            <li>Уверенность через простоту</li>
-        </ul>
-    </div>
-
-    <!-- VISUAL IDENTITY -->
-    <div class="page">
-        <h1>ВИЗУАЛЬНАЯ ИДЕНТИЧНОСТЬ</h1>
-        <div class="divider"></div>
-        
-        <h2>ЛОГОТИП</h2>
-        <p>Логотип EBLAN выполнен в классической антикве с увеличенным межбуквенным расстоянием. Он передает элегантность и вневременность бренда.</p>
-        
-        <div style="text-align: center; margin: 60px 0;">
-            <div style="font-size: 72px; letter-spacing: 12px; font-weight: 300;">EBLAN</div>
-        </div>
-        
-        <h3>Правила использования</h3>
-        <ul>
-            <li>Минимальная свободная зона вокруг логотипа — высота буквы "E"</li>
-            <li>Не изменять пропорции и межбуквенное расстояние</li>
-            <li>Использовать только на черном или белом фоне</li>
-            <li>Не добавлять эффекты, тени или контуры</li>
-        </ul>
-        
-        <h2>ТИПОГРАФИКА</h2>
-        
-        <div class="typography-sample">
-            <div class="font-name">PRIMARY — ЗАГОЛОВКИ</div>
-            <div class="font-display">Canela</div>
-            <p style="color: #8C8C8C;">Используется для основных заголовков, названий коллекций и ключевых сообщений. Передает уверенность и спокойствие.</p>
-        </div>
-        
-        <div class="typography-sample">
-            <div class="font-name">SECONDARY — ТЕКСТ</div>
-            <div class="font-display" style="font-family: 'Inter', sans-serif;">Inter</div>
-            <p style="color: #8C8C8C;">Используется для основного текста, описаний и технической информации. Обеспечивает точность и читаемость.</p>
-        </div>
-    </div>
-
-    <!-- COLOR PALETTE -->
-    <div class="page">
-        <h1>ЦВЕТОВАЯ ПАЛИТРА</h1>
-        <div class="divider"></div>
-        
-        <p>Цветовая палитра EBLAN построена на контрасте между глубоким черным и мягкими нейтральными оттенками. Это создает визуальное напряжение, которое подчеркивает форму и текстуру.</p>
-        
-        <div class="color-grid">
-            <div class="color-swatch" style="background: #0B0B0B;">
-                <div class="color-name" style="color: #F2F2EE;">ABSOLUTE BLACK</div>
-                <div class="color-hex" style="color: #8C8C8C;">#0B0B0B</div>
-            </div>
-            
-            <div class="color-swatch" style="background: #141414;">
-                <div class="color-name" style="color: #F2F2EE;">SOFT BLACK</div>
-                <div class="color-hex" style="color: #8C8C8C;">#141414</div>
-            </div>
-            
-            <div class="color-swatch" style="background: #8C8C8C;">
-                <div class="color-name" style="color: #0B0B0B;">WARM GREY</div>
-                <div class="color-hex" style="color: #0B0B0B;">#8C8C8C</div>
-            </div>
-            
-            <div class="color-swatch" style="background: #F2F2EE; border: 1px solid #8C8C8C;">
-                <div class="color-name" style="color: #0B0B0B;">OFF WHITE</div>
-                <div class="color-hex" style="color: #0B0B0B;">#F2F2EE</div>
-            </div>
-            
-            <div class="color-swatch" style="background: #C9C2B8;">
-                <div class="color-name" style="color: #0B0B0B;">STONE BEIGE</div>
-                <div class="color-hex" style="color: #0B0B0B;">#C9C2B8</div>
-            </div>
-        </div>
-        
-        <h2>ПРИМЕНЕНИЕ</h2>
-        <ul>
-            <li>Absolute Black (#0B0B0B) — основной фон для всех материалов</li>
-            <li>Off White (#F2F2EE) — основной цвет текста и логотипа</li>
-            <li>Warm Grey (#8C8C8C) — вторичный текст и акценты</li>
-            <li>Stone Beige (#C9C2B8) — декоративные элементы и разделители</li>
-            <li>Soft Black (#141414) — подложки и карточки</li>
-        </ul>
-    </div>
-
-    <!-- TONE OF VOICE -->
-    <div class="page">
-        <h1>TONE OF VOICE</h1>
-        <div class="divider"></div>
-        
-        <p>Голос бренда EBLAN — это голос уверенного минималиста. Мы говорим спокойно, точно и без лишних слов.</p>
-        
-        <h2>ПРИНЦИПЫ КОММУНИКАЦИИ</h2>
-        
-        <div class="principles">
-            <div class="principle">
-                <div class="principle-title">СПОКОЙСТВИЕ</div>
-                <div class="principle-text">Мы не кричим и не преувеличаем. Наш голос всегда ровный и уверенный.</div>
-            </div>
-            
-            <div class="principle">
-                <div class="principle-title">ТОЧНОСТЬ</div>
-                <div class="principle-text">Каждое слово выбрано с той же тщательностью, что и каждая строчка на нашей одежде.</div>
-            </div>
-            
-            <div class="principle">
-                <div class="principle-title">ЧЕСТНОСТЬ</div>
-                <div class="principle-text">Мы говорим только о том, что действительно важно. Никаких маркетинговых клише.</div>
-            </div>
-        </div>
-        
-        <h2>ЧТО МЫ НЕ ДЕЛАЕМ</h2>
-        <ul>
-            <li>Не используем слоганы и кричащие фразы</li>
-            <li>Не преувеличиваем и не обещаем лишнего</li>
-            <li>Не следуем за трендами в коммуникации</li>
-            <li>Не используем эмодзи и восклицательные знаки</li>
-            <li>Не создаем искусственный ажиотаж</li>
-        </ul>
-        
-        <h2>ПРИМЕРЫ</h2>
-        
-        <div style="background: #141414; padding: 30px; border-radius: 8px; margin: 30px 0;">
-            <h3 style="color: #C9C2B8; margin-bottom: 15px;">✓ ПРАВИЛЬНО</h3>
-            <p style="color: #F2F2EE; margin-bottom: 20px;">"Создано, чтобы служить долго"</p>
-            <p style="color: #F2F2EE;">"100% органический хлопок. Плотность 280 г/м²"</p>
-        </div>
-        
-        <div style="background: #141414; padding: 30px; border-radius: 8px; opacity: 0.5;">
-            <h3 style="color: #8C8C8C; margin-bottom: 15px;">✗ НЕПРАВИЛЬНО</h3>
-            <p style="color: #8C8C8C; margin-bottom: 20px;">"Самое крутое худи этого сезона! 🔥"</p>
-            <p style="color: #8C8C8C;">"Революционное качество по невероятной цене!!!"</p>
-        </div>
-    </div>
-
-    <!-- PHOTOGRAPHY -->
-    <div class="page">
-        <h1>ФОТОГРАФИЯ</h1>
-        <div class="divider"></div>
-        
-        <h2>ПРИНЦИПЫ</h2>
-        <ul>
-            <li>Естественное освещение или студийный свет без резких теней</li>
-            <li>Минималистичные фоны — бетон, штукатурка, однотонные поверхности</li>
-            <li>Фокус на форме, текстуре и деталях кроя</li>
-            <li>Модели выглядят естественно и уверенно, без наигранных эмоций</li>
-            <li>Цветокоррекция в сторону холодных или нейтральных тонов</li>
-        </ul>
-        
-        <h2>КОМПОЗИЦИЯ</h2>
-        <ul>
-            <li>Центрированная композиция для симметричных кадров</li>
-            <li>Использование правила третей для динамичных снимков</li>
-            <li>Достаточно воздуха вокруг объекта съемки</li>
-            <li>Четкий фокус на одежде, размытие фона допустимо</li>
-        </ul>
-        
-        <h2>ЗАПРЕЩЕНО</h2>
-        <ul>
-            <li>Яркие, кислотные цвета в кадре</li>
-            <li>Перенасыщенные, чрезмерно обработанные фотографии</li>
-            <li>Излишняя театральность и постановочность</li>
-            <li>Использование фильтров и пресетов</li>
-        </ul>
-    </div>
-
-    <!-- APPLICATIONS -->
-    <div class="page">
-        <h1>ПРИМЕНЕНИЕ</h1>
-        <div class="divider"></div>
-        
-        <h2>УПАКОВКА</h2>
-        <p>Вся упаковка выполнена в черном цвете с минимальной белой типографикой. Используются перерабатываемые материалы.</p>
-        <ul>
-            <li>Черные коробки из переработанного картона</li>
-            <li>Логотип EBLAN тиснением или белым принтом</li>
-            <li>Тканевые мешки из органического хлопка</li>
-            <li>Минималистичные ярлыки с информацией об уходе</li>
-        </ul>
-        
-        <h2>DIGITAL</h2>
-        <ul>
-            <li>Веб-сайт на черном фоне с крупной типографикой</li>
-            <li>Минималистичная навигация</li>
-            <li>Фотографии продуктов в высоком разрешении</li>
-            <li>Никаких всплывающих окон и баннеров</li>
-        </ul>
-        
-        <h2>SOCIAL MEDIA</h2>
-        <ul>
-            <li>Единая визуальная эстетика во всех каналах</li>
-            <li>Квадратный формат для основных постов</li>
-            <li>Короткие подписи без хештегов</li>
-            <li>Публикации 2-3 раза в неделю</li>
-        </ul>
-        
-        <h2>RETAIL</h2>
-        <ul>
-            <li>Минималистичный дизайн витрин</li>
-            <li>Черные стены и бетонный пол</li>
-            <li>Точечное освещение на продукты</li>
-            <li>Минимум мебели, максимум пространства</li>
-        </ul>
-    </div>
-
-    <!-- FINAL PAGE -->
-    <div class="page cover">
-        <div class="quote">"Создавая EBLAN, мы стремились к тишине в мире шума, к форме в мире хаоса, к качеству в мире количества"</div>
-        <div style="margin-top: 60px; text-align: center; color: #8C8C8C; font-size: 14px; letter-spacing: 2px;">
-            EBLAN PARIS<br>
-            EST. 2024
-        </div>
-    </div>
-
 </body>
 </html>
