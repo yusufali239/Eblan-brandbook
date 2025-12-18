@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EBLAN | Brand Universe</title>
+    <title>EBLAN | Brand Universe 2024</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,12 +11,15 @@
     
     <style>
         :root {
+            [cite_start]/* Palette based on brandbook [cite: 126-130] */
             --bg-color: #0B0B0B;
+            --soft-black: #141414;
             --text-primary: #F2F2EE;
             --text-secondary: #8C8C8C;
             --accent: #C9C2B8;
+            
             --font-main: 'Inter', sans-serif;
-            --font-headline: 'Playfair Display', serif; /* Замена Canela для веба */
+            --font-headline: 'Playfair Display', serif; 
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,16 +32,17 @@
             font-family: var(--font-main);
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Эффект шума (Film Grain) */
+        /* === FX: FILM GRAIN / NOISE === */
         .noise-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 50; opacity: 0.05;
+            pointer-events: none; z-index: 50; opacity: 0.04;
             background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIxIi8+PC9zdmc+');
         }
 
-        /* Preloader */
+        /* === FX: PRELOADER === */
         .loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-color); z-index: 2000;
@@ -47,17 +51,18 @@
         }
         .loader.hidden { opacity: 0; visibility: hidden; }
         .loader-text {
-            font-family: var(--font-headline); font-size: 24px; letter-spacing: 8px;
-            animation: pulse 2s infinite;
+            font-family: var(--font-headline); font-size: 24px; letter-spacing: 12px;
+            animation: pulse 2s infinite; color: var(--text-primary);
         }
 
-        /* Навигация */
+        /* === UI: NAVIGATION DOCK === */
         .nav-dock {
             position: fixed; top: 30px; right: 30px; z-index: 1000;
             display: flex; gap: 8px; 
-            background: rgba(20, 20, 20, 0.6);
+            background: rgba(20, 20, 20, 0.7);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            padding: 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);
+            padding: 8px; border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.05);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         
@@ -81,11 +86,11 @@
         }
         .pdf-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(255,255,255,0.15); }
 
-        /* Контент */
+        /* === LAYOUT === */
         .page-section {
             min-height: 100vh; padding: 120px 10%;
             display: flex; flex-direction: column; justify-content: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
             position: relative;
         }
 
@@ -94,9 +99,8 @@
         .brand-logo {
             font-family: var(--font-headline);
             font-size: clamp(60px, 15vw, 180px);
-            font-weight: 400; letter-spacing: 0.15em; margin-bottom: 20px;
-            background: linear-gradient(180deg, #fff 0%, #888 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-weight: 300; letter-spacing: 0.1em; margin-bottom: 20px;
+            color: var(--text-primary);
             opacity: 0; animation: fadeUp 1.2s ease forwards 0.5s;
         }
 
@@ -105,91 +109,112 @@
             margin-bottom: 40px; opacity: 0; animation: fadeUp 1.2s ease forwards 0.8s;
         }
 
-        /* Типографика контента */
         h2 {
             font-family: var(--font-headline); font-size: 42px; font-weight: 400; 
-            margin-bottom: 30px; color: var(--text-primary);
+            margin-bottom: 30px; color: var(--text-primary); letter-spacing: 2px;
         }
         
         p {
             font-size: 18px; color: var(--text-secondary); max-width: 600px; 
-            margin-bottom: 30px; font-weight: 300; leading-trim: both;
+            margin-bottom: 30px; font-weight: 300; 
         }
         
+        .divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
         .highlight { color: var(--accent); font-style: italic; font-family: var(--font-headline); }
 
-        /* Цветовая сетка */
+        /* === GRIDS & IMAGES === */
+        .image-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; margin: 40px 0;
+        }
+        .image-item {
+            aspect-ratio: 3/4; overflow: hidden; border-radius: 4px; background: var(--soft-black); position: relative;
+        }
+        .image-item img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: grayscale(20%);
+        }
+        .image-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
+
         .palette { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 50px; }
         .swatch {
-            width: 120px; height: 160px; border-radius: 4px;
+            width: 140px; height: 180px; border-radius: 4px;
             padding: 15px; display: flex; flex-direction: column; justify-content: flex-end;
-            font-size: 10px; letter-spacing: 1px; transition: transform 0.3s ease;
+            font-size: 11px; letter-spacing: 1px; transition: transform 0.3s ease;
             border: 1px solid rgba(255,255,255,0.1);
         }
         .swatch:hover { transform: translateY(-10px); }
 
-        /* Анимации скролла */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+        /* === ANIMATIONS === */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-        /* Переключатель контента */
+        /* === CONTENT SWITCHER === */
         .lang-content { display: none; }
-        .lang-content.active { display: block; }
+        .lang-content.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+        /* === PRINT STYLES === */
         @media print {
             .noise-overlay, .nav-dock, .pdf-btn, .loader { display: none; }
             body { background: white; color: black; }
-            .brand-logo { -webkit-text-fill-color: black; }
-            .page-section { page-break-after: always; border: none; padding: 40px; min-height: auto; }
+            .brand-logo, h2, p { color: black !important; -webkit-text-fill-color: black; }
+            .page-section { page-break-after: always; border: none; padding: 40px; min-height: auto; display: block; }
+            .swatch { border: 1px solid #ccc; -webkit-print-color-adjust: exact; }
         }
     </style>
 </head>
 <body>
 
     <div class="noise-overlay"></div>
+    
     <div class="loader" id="loader">
         <div class="loader-text">EBLAN</div>
     </div>
 
     <div class="nav-dock">
-        <button class="lang-btn active" onclick="switchLang('ru', this)">RU</button>
-        <button class="lang-btn" onclick="switchLang('en', this)">EN</button>
+        <button class="lang-btn active" onclick="switchLang('en', this)">EN</button>
+        <button class="lang-btn" onclick="switchLang('ru', this)">RU</button>
         <button class="lang-btn" onclick="switchLang('fr', this)">FR</button>
         <button class="lang-btn" onclick="switchLang('it', this)">IT</button>
     </div>
 
-    <button class="pdf-btn" onclick="window.print()">SAVE AS PDF</button>
+    <button class="pdf-btn" onclick="window.print()">PRINT / PDF</button>
 
-    <div id="ru" class="lang-content active">
+    <div id="en" class="lang-content active">
         <section class="page-section hero">
             <h1 class="brand-logo">EBLAN</h1>
-            <div class="subtitle">Париж | 2024</div>
-            <p style="margin: 0 auto;">Форма важнее шума</p>
+            <div class="subtitle">Paris | Est. 2024</div>
+            <p style="margin: 0 auto; letter-spacing: 2px;">FORM BEFORE NOISE</p>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Философия</h2>
-                <p>Бренд **EBLAN** был основан в 2024 году в Париже как манифест против визуального шума и излишней сложности современного мира.</p>
-                <p>Мы фокусируемся на <span class="highlight">форме, материале и тишине</span>. Это одежда, созданная, чтобы служить долго, носиться без лишних объяснений и стареть с достоинством.</p>
+                <h2>Philosophy</h2>
+                <div class="divider"></div>
+                <p>Founded in 2024 in Paris, EBLAN was created as a response to visual noise and excessive complexity. We create clothing that speaks through form, not words.</p>
+                <div class="image-grid">
+                    <div class="image-item"><img src="images/Storefront.jpg" alt="Paris Store"></div>
+                    <div class="image-item"><img src="images/Hoodie-model1.jpg" alt="Model"></div>
+                </div>
             </div>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Позиционирование</h2>
-                <p>Тихая роскошь (Quiet Luxury). Минималистичная мода. Мы не следуем трендам. Мы создаем фундамент гардероба для людей, ценящих сдержанность.</p>
-                <p style="border-left: 2px solid var(--accent); padding-left: 20px;">«Одежда не должна перекрикивать личность»</p>
+                <h2>Brand DNA</h2>
+                <p>Our positioning is <span class="highlight">Quiet Luxury</span>. Minimal fashion. EBLAN does not follow trends. It creates essential garments for people who value restraint and clarity.</p>
+                <p style="border-left: 2px solid var(--accent); padding-left: 20px; font-style: italic;">"Garments that age with dignity."</p>
             </div>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Визуальный Код</h2>
-                <p>Наша палитра вдохновлена текстурами камня, теней и города.</p>
+                <h2>Color Palette</h2>
+                <p>Built on the contrast between deep black and soft neutral tones.</p>
                 <div class="palette">
                     <div class="swatch" style="background: #0B0B0B; color: #fff;">Absolute Black<br>#0B0B0B</div>
                     <div class="swatch" style="background: #141414; color: #fff;">Soft Black<br>#141414</div>
@@ -199,41 +224,67 @@
                 </div>
             </div>
         </section>
+        
+        <section class="page-section">
+            <div class="reveal">
+                <h2>Products</h2>
+                <p>Signature pieces cut from heavyweight organic cotton. Minimal branding, maximum quality.</p>
+                <div class="image-grid">
+                    <div class="image-item"><img src="images/Hoodie - product1.jpg" alt="Product"></div>
+                    <div class="image-item"><img src="images/Ball1.jpg" alt="Detail"></div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div id="en" class="lang-content">
+    <div id="ru" class="lang-content">
         <section class="page-section hero">
             <h1 class="brand-logo">EBLAN</h1>
-            <div class="subtitle">Paris | 2024</div>
-            <p style="margin: 0 auto;">Form before noise</p>
+            <div class="subtitle">Париж | 2024</div>
+            <p style="margin: 0 auto; letter-spacing: 2px;">ФОРМА ПРЕЖДЕ ШУМА</p>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Philosophy</h2>
-                <p>Founded in 2024 in Paris, **EBLAN** was created as a response to visual noise and unnecessary complexity.</p>
-                <p>The brand focuses on <span class="highlight">form, material, and silence</span>. Clothing designed to last, to be worn without explanation, and to age with dignity.</p>
+                <h2>Философия</h2>
+                <div class="divider"></div>
+                <p>Бренд EBLAN был основан в 2024 году в Париже как ответ на визуальный шум и излишнюю сложность. Мы создаем одежду, которая говорит формой, а не словами.</p>
+                <div class="image-grid">
+                    <div class="image-item"><img src="images/Storefront.jpg" alt="Магазин"></div>
+                    <div class="image-item"><img src="images/Hoodie-model1.jpg" alt="Модель"></div>
+                </div>
             </div>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Positioning</h2>
-                <p>Quiet luxury. Minimal fashion. EBLAN does not follow trends. It creates essential garments for people who value restraint and clarity.</p>
-                <p style="border-left: 2px solid var(--accent); padding-left: 20px;">"Garments that speak through silence"</p>
+                <h2>ДНК Бренда</h2>
+                <p>Наше позиционирование — <span class="highlight">Тихая Роскошь</span>. Мы не следуем трендам. Мы создаем фундамент гардероба для людей, ценящих сдержанность и ясность.</p>
+                <p style="border-left: 2px solid var(--accent); padding-left: 20px; font-style: italic;">"Одежда, которая стареет с достоинством."</p>
             </div>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Visual Code</h2>
-                <p>Our palette is inspired by stone, shadows, and urban architecture.</p>
+                <h2>Палитра</h2>
+                <p>Построена на контрасте глубокого черного и мягких природных тонов.</p>
                 <div class="palette">
                     <div class="swatch" style="background: #0B0B0B; color: #fff;">Absolute Black<br>#0B0B0B</div>
                     <div class="swatch" style="background: #141414; color: #fff;">Soft Black<br>#141414</div>
                     <div class="swatch" style="background: #8C8C8C; color: #000;">Warm Grey<br>#8C8C8C</div>
                     <div class="swatch" style="background: #F2F2EE; color: #000;">Off White<br>#F2F2EE</div>
                     <div class="swatch" style="background: #C9C2B8; color: #000;">Stone Beige<br>#C9C2B8</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="page-section">
+            <div class="reveal">
+                <h2>Продукт</h2>
+                <p>Знаковые вещи из плотного органического хлопка. Минимум брендинга, максимум качества.</p>
+                <div class="image-grid">
+                    <div class="image-item"><img src="images/Hoodie - product1.jpg" alt="Продукт"></div>
+                    <div class="image-item"><img src="images/Ball1.jpg" alt="Деталь"></div>
                 </div>
             </div>
         </section>
@@ -242,30 +293,33 @@
     <div id="fr" class="lang-content">
         <section class="page-section hero">
             <h1 class="brand-logo">EBLAN</h1>
-            <div class="subtitle">Paris | 2024</div>
-            <p style="margin: 0 auto;">La forme avant le bruit</p>
+            <div class="subtitle">Paris | Est. 2024</div>
+            <p style="margin: 0 auto; letter-spacing: 2px;">LA FORME AVANT LE BRUIT</p>
         </section>
 
         <section class="page-section">
             <div class="reveal">
                 <h2>Philosophie</h2>
-                <p>Fondée en 2024 à Paris, **EBLAN** est une réponse au bruit visuel et à la complexité inutile de la mode contemporaine.</p>
-                <p>La marque se concentre sur <span class="highlight">la forme, la matière et le silence</span>. Des vêtements conçus pour durer, pour être portés sans explication et pour vieillir avec dignité.</p>
+                <div class="divider"></div>
+                <p>Fondée en 2024 à Paris, EBLAN est une réponse au bruit visuel et à la complexité inutile. Nous créons des vêtements qui parlent par la forme, pas par les mots.</p>
+                <div class="image-grid">
+                    <div class="image-item"><img src="images/Storefront.jpg" alt="Boutique"></div>
+                    <div class="image-item"><img src="images/Hoodie-model1.jpg" alt="Modele"></div>
+                </div>
             </div>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Positionnement</h2>
-                <p>Luxe discret (Quiet Luxury). Mode minimale. EBLAN ne suit pas les tendances. Nous créons des pièces essentielles pour ceux qui apprécient la retenue et la clarté.</p>
-                <p style="border-left: 2px solid var(--accent); padding-left: 20px;">« L'élégance du silence »</p>
+                <h2>ADN de la Marque</h2>
+                <p>Notre positionnement est le <span class="highlight">Luxe Discret</span>. Mode minimale. EBLAN ne suit pas les tendances. Nous créons des pièces essentielles pour ceux qui apprécient la retenue.</p>
+                <p style="border-left: 2px solid var(--accent); padding-left: 20px; font-style: italic;">"Des vêtements qui vieillissent avec dignité."</p>
             </div>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Code Visuel</h2>
-                <p>Une palette inspirée par la pierre brute et les ombres.</p>
+                <h2>Palette de Couleurs</h2>
                 <div class="palette">
                     <div class="swatch" style="background: #0B0B0B; color: #fff;">Noir Absolu<br>#0B0B0B</div>
                     <div class="swatch" style="background: #141414; color: #fff;">Noir Doux<br>#141414</div>
@@ -280,30 +334,33 @@
     <div id="it" class="lang-content">
         <section class="page-section hero">
             <h1 class="brand-logo">EBLAN</h1>
-            <div class="subtitle">Parigi | 2024</div>
-            <p style="margin: 0 auto;">La forma prima del rumore</p>
+            <div class="subtitle">Parigi | Est. 2024</div>
+            <p style="margin: 0 auto; letter-spacing: 2px;">LA FORMA PRIMA DEL RUMORE</p>
         </section>
 
         <section class="page-section">
             <div class="reveal">
                 <h2>Filosofia</h2>
-                <p>Fondata nel 2024 a Parigi, **EBLAN** nasce come risposta al rumore visivo e alla complessità superflua.</p>
-                <p>Il marchio si concentra su <span class="highlight">forma, materia e silenzio</span>. Abiti progettati per durare, per essere indossati senza spiegazioni e per invecchiare con dignità.</p>
+                <div class="divider"></div>
+                <p>Fondata nel 2024 a Parigi, EBLAN nasce come risposta al rumore visivo e alla complessità superflua. Creiamo abiti che parlano attraverso la forma, non le parole.</p>
+                <div class="image-grid">
+                    <div class="image-item"><img src="images/Storefront.jpg" alt="Negozio"></div>
+                    <div class="image-item"><img src="images/Hoodie-model1.jpg" alt="Modello"></div>
+                </div>
             </div>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Posizionamento</h2>
-                <p>Lusso silenzioso (Quiet Luxury). Moda minimale. EBLAN non segue le tendenze. Crea capi essenziali per chi apprezza la sobrietà e la chiarezza.</p>
-                <p style="border-left: 2px solid var(--accent); padding-left: 20px;">«La sostanza oltre l'apparenza»</p>
+                <h2>DNA del Brand</h2>
+                <p>Il nostro posizionamento è il <span class="highlight">Lusso Silenzioso</span>. Moda minimale. EBLAN non segue le tendenze. Crea capi essenziali per chi apprezza la sobrietà.</p>
+                <p style="border-left: 2px solid var(--accent); padding-left: 20px; font-style: italic;">"Capi che invecchiano con dignità."</p>
             </div>
         </section>
 
         <section class="page-section">
             <div class="reveal">
-                <h2>Codice Visivo</h2>
-                <p>La nostra tavolozza si ispira alla pietra e all'ombra.</p>
+                <h2>Tavolozza Colori</h2>
                 <div class="palette">
                     <div class="swatch" style="background: #0B0B0B; color: #fff;">Nero Assoluto<br>#0B0B0B</div>
                     <div class="swatch" style="background: #141414; color: #fff;">Nero Soft<br>#141414</div>
@@ -316,31 +373,32 @@
     </div>
 
     <script>
-        // Loader logic
+        // === PRELOADER LOGIC ===
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
-            }, 1500);
+            }, 1000);
         });
 
-        // Language Switcher Logic
+        // === LANGUAGE SWITCHER ===
         function switchLang(langId, btnElement) {
-            // Update Content
+            // Hide all content
             document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            // Show selected content
             document.getElementById(langId).classList.add('active');
             
-            // Update Buttons
+            // Update button states
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
 
-            // Reset Scroll
+            // Scroll to top smoothly
             window.scrollTo(0, 0);
             
-            // Re-trigger animations
-            observeElements();
+            // Trigger animations again for the new section
+            setTimeout(observeElements, 100);
         }
 
-        // Scroll Reveal Animation
+        // === SCROLL REVEAL ANIMATION ===
         function observeElements() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -351,12 +409,11 @@
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.reveal').forEach(el => {
-                el.classList.remove('active'); // Reset to animate again
                 observer.observe(el);
             });
         }
 
-        // Initialize
+        // Init animations on load
         document.addEventListener('DOMContentLoaded', observeElements);
     </script>
 </body>
